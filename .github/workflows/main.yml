@@ -1,0 +1,32 @@
+name: Manual Trigger
+
+on:
+  push:
+    branches: 
+      - main
+  workflow_dispatch:
+
+jobs:
+  texcount:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+          architecture: 'x64'
+      - name: Get Python version
+        run: python -V
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Install texlive(basic)
+        run: sudo apt install texlive
+      - name: Install texcount
+        run: sudo apt-get install -y texlive-extra-utils
+      - name: Install Slack python SDL
+        run: |
+          pip install slack-sdk
+          pip install aiohttp
+      - name: Run Python
+        run: sh updateProgress.sh
