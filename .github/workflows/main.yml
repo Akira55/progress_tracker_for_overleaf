@@ -28,5 +28,12 @@ jobs:
         run: |
           pip install slack-sdk
           pip install aiohttp
+      - uses: actions/checkout@v2
       - name: Run Python
         run: sh updateProgress.sh
+      - name: Commit progress
+        run: |
+          git config --global user.name 'Your git hub name'
+          git config --global user.email 'Your git email'
+          git commit -am "Generated progress report"
+          git push
