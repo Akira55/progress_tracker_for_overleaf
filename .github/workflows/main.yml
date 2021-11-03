@@ -35,5 +35,6 @@ jobs:
         run: |
           git config --global user.name 'Your git hub name'
           git config --global user.email 'Your git email'
+          git add .
           git commit -am "Generated progress report"
           git push
