@@ -20,6 +20,8 @@ jobs:
         run: python -V
       - name: Install dependencies
         run: pip install -r requirements.txt
+      - name: update apt 
+        run: sudo apt-get update
       - name: Install texlive(basic)
         run: sudo apt install texlive
       - name: Install texcount
